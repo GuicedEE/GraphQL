@@ -6,13 +6,13 @@
     <parent>
         <groupId>com.guicedee</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.1</version>
     </parent>
 
     <groupId>com.guicedee</groupId>
     <artifactId>graphql</artifactId>
     <packaging>jar</packaging>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.1</version>
     <name>Guiced GraphQL</name>
     <description>GraphQL integration for GuicedEE using Vert.x Web GraphQL</description>
     <url>https://github.com/GedMarc/GraphQL</url>
