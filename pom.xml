@@ -6,13 +6,13 @@
     <parent>
         <groupId>com.guicedee</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0.3-SNAPSHOT</version>
+        <version>2.1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.guicedee</groupId>
     <artifactId>graphql</artifactId>
     <packaging>jar</packaging>
-    <version>2.0.3-SNAPSHOT</version>
+    <version>2.1.0-SNAPSHOT</version>
     <name>Guiced GraphQL</name>
     <description>GraphQL integration for GuicedEE using Vert.x Web GraphQL</description>
     <url>https://github.com/GedMarc/GraphQL</url>
@@ -38,6 +38,21 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web-graphql</artifactId>
             <version>${vertx.version}</version>
+        </dependency>
+
+        <!-- Optional: Gateway schema stitching (only needed if using GRAPHQL_GATEWAY_ENABLED=true) -->
+        <dependency>
+            <groupId>com.guicedee</groupId>
+            <artifactId>service-registry</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+            <version>${vertx.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

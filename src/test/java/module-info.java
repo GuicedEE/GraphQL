@@ -6,6 +6,7 @@ import com.guicedee.vertx.graphql.test.TestSchemaProvider;
 module guiced.graphql.test {
 
     requires com.guicedee.vertx.graphql;
+    requires com.guicedee.service.registry;
 
     requires java.net.http;
 
@@ -20,4 +21,3 @@ module guiced.graphql.test {
 
     opens com.guicedee.vertx.graphql.test to org.junit.platform.commons, com.google.guice, com.fasterxml.jackson.databind;
 }
-
