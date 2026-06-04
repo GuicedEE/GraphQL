@@ -8,6 +8,7 @@ import com.guicedee.client.services.lifecycle.IGuiceModule;
 import com.guicedee.vertx.graphql.GraphQLOptions;
 import com.guicedee.vertx.graphql.services.IGraphQLSchemaProvider;
 import graphql.GraphQL;
+import graphql.execution.instrumentation.ChainedInstrumentation;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
@@ -72,8 +73,9 @@ public class GraphQLModule extends AbstractModule implements IGuiceModule<GraphQ
                 .makeExecutableSchema(mergedRegistry, wiringBuilder.build());
 
         return GraphQL.newGraphQL(schema)
-                .instrumentation(VertxFutureAdapter.create())
-                .instrumentation(new JsonObjectAdapter())
+                .instrumentation(new ChainedInstrumentation(
+                        VertxFutureAdapter.create(),
+                        new JsonObjectAdapter()))
                 .build();
     }
 }
