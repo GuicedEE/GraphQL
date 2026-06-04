@@ -237,8 +237,24 @@ flowchart LR
     com_guicedee_vertx_graphql --> com_guicedee_client["com.guicedee.client<br/>GuicedEE SPI contracts"]
     com_guicedee_vertx_graphql --> io_vertx_web_graphql["io.vertx.web.graphql<br/>Vert.x Web GraphQL"]
     com_guicedee_vertx_graphql --> com_graphqljava["com.graphqljava<br/>GraphQL-Java"]
+    com_graphqljava --> com_google_common["com.google.common<br/>Guava (canonical)"]
     com_guicedee_vertx_graphql --> org_dataloader["org.dataloader<br/>Java DataLoader"]
 ```
+
+## 🛡️ Dependency Hygiene
+
+GraphQL-Java ships a **shaded copy of Guava** embedded under `graphql.com.google.common.*`.
+The GuicedEE shade module `com.graphqljava` **strips that embedded copy out** and rewrites
+GraphQL-Java's internal references back to the real `com.google.common` package, so the runtime
+reuses the **canonical `com.google.guava:guava` (JPMS module `com.google.common`)** that GuicedEE
+already ships and patches centrally.
+
+Benefits:
+- **No duplicate Guava** on the module path — a single, suite-managed version.
+- **Security** — the embedded Guava is no longer pinned to whatever GraphQL-Java last bundled;
+  it tracks the centrally-managed, up-to-date Guava and its CVE fixes.
+- **Clean JPMS graph** — `com.graphqljava requires transitive com.google.common`, so consumers of
+  `com.guicedee.vertx.graphql` automatically read Guava with no extra `requires` clause.
 
 ## 🧩 JPMS
 

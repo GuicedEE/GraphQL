@@ -51,6 +51,11 @@
             <artifactId>vertx-web-graphql</artifactId>
             <version>${vertx.version}</version>
         </dependency>
+        <!-- Shaded JPMS module com.graphqljava (transitively provides module org.dataloader) -->
+        <dependency>
+            <groupId>com.guicedee.modules.services</groupId>
+            <artifactId>graphql-java</artifactId>
+        </dependency>
         <!-- Optional: Gateway schema stitching (only needed if using GRAPHQL_GATEWAY_ENABLED=true) -->
         <dependency>
             <groupId>com.guicedee</groupId>
