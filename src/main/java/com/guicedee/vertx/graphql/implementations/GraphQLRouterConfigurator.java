@@ -14,6 +14,7 @@ import io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions;
 import io.vertx.ext.web.handler.graphql.GraphiQLHandler;
 import io.vertx.ext.web.handler.graphql.GraphiQLHandlerOptions;
 import io.vertx.ext.web.handler.graphql.ws.GraphQLWSHandler;
+import lombok.extern.log4j.Log4j2;
 import org.dataloader.DataLoaderRegistry;
 
 import java.util.ServiceLoader;
@@ -27,11 +28,10 @@ import java.util.logging.Logger;
  *
  * <p>Route paths and feature toggles are driven by {@link GraphQLOptions} environment variables.</p>
  */
+@Log4j2
 public class GraphQLRouterConfigurator
         implements VertxRouterConfigurator<GraphQLRouterConfigurator>, VertxHttpServerOptionsConfigurator
 {
-    private static final Logger log = Logger.getLogger("GraphQLRouterConfigurator");
-
     @Override
     public Integer sortOrder()
     {
@@ -64,7 +64,7 @@ public class GraphQLRouterConfigurator
             }
             catch (Throwable t)
             {
-                log.log(Level.SEVERE, "Failed to mount GraphQL WebSocket handler", t);
+                log.fatal("Failed to mount GraphQL WebSocket handler", t);
             }
         }
 
@@ -98,7 +98,7 @@ public class GraphQLRouterConfigurator
             }
             catch (Throwable t)
             {
-                log.log(Level.SEVERE, "Failed to mount GraphiQL handler", t);
+                log.fatal( "Failed to mount GraphiQL handler", t);
             }
         }
 
@@ -136,7 +136,7 @@ public class GraphQLRouterConfigurator
             }
             catch (Throwable t)
             {
-                log.log(Level.WARNING, "Error configuring data loader from " + provider.getClass().getName(), t);
+                log.fatal("Error configuring data loader from " + provider.getClass().getName(), t);
             }
         }
         return registry;
