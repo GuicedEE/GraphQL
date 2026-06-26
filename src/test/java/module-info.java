@@ -19,5 +19,5 @@ module guiced.graphql.test {
     provides IGuiceModule with GraphQLTestModule;
     provides IGraphQLSchemaProvider with TestSchemaProvider;
 
-    opens com.guicedee.vertx.graphql.test to org.junit.platform.commons, com.google.guice, com.fasterxml.jackson.databind;
+    opens com.guicedee.vertx.graphql.test to org.junit.platform.commons, com.google.guice, tools.jackson.databind;
 }

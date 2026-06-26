@@ -114,7 +114,15 @@ public class GraphQLRouterConfigurator
     @Override
     public HttpServerOptions builder(HttpServerOptions options)
     {
-        return options.addWebSocketSubProtocol("graphql-transport-ws");
+        // Add additively so we never clobber sub-protocols registered by other modules
+        // (e.g. JWebMP/STOMP "v1x.stomp"). A destructive set here would reject those
+        // clients' WebSocket handshakes.
+        if (options.getWebSocketSubProtocols() == null
+                || !options.getWebSocketSubProtocols().contains("graphql-transport-ws"))
+        {
+            options.addWebSocketSubProtocol("graphql-transport-ws");
+        }
+        return options;
     }
 
     /**
