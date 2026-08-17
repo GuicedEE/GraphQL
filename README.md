@@ -209,7 +209,7 @@ Add the `Upload` scalar to your wiring and use `FileUpload` from `DataFetchingEn
 |---|---|
 | `IGraphQLSchemaProvider` | Contribute SDL type definitions and runtime wiring |
 | `IGraphQLDataLoaderProvider` | Register batch loaders per request |
-| `VertxRouterConfigurator` | Customize the Vert.x `Router` (provided by `GraphQLRouterConfigurator`) |
+| `VertxRouterConfigurator` | Customize the Vert.x `RouterConfig` (provided by `GraphQLRouterConfigurator`) |
 | `VertxHttpServerOptionsConfigurator` | Customize `HttpServerOptions` (WebSocket subprotocol added automatically) |
 | `IGuiceModule` | Contribute Guice bindings (provided by `GraphQLModule`) |
 
