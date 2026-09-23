@@ -19,7 +19,6 @@ import com.guicedee.vertx.web.spi.VertxRouterConfigurator;
 module com.guicedee.vertx.graphql {
 
     requires transitive com.guicedee.vertx.web;
-    requires transitive com.guicedee.client;
     requires transitive io.vertx.web.graphql;
     requires transitive com.graphqljava;
     requires transitive org.dataloader;
