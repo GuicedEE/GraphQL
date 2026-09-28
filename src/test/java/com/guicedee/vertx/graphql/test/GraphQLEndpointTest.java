@@ -62,6 +62,13 @@ public class GraphQLEndpointTest
 
         assertEquals(200, response.statusCode(), "GraphQL endpoint not available for greet query");
         assertTrue(response.body().contains("Hello, World!"), "Expected greet response");
+
+        response = client.send(HttpRequest.newBuilder()
+                        .POST(HttpRequest.BodyPublishers.ofString("{\"query\":\"mutation { acknowledge }\"}"))
+                        .header("Content-Type", "application/json")
+                        .uri(new URI("http://localhost:8080/graphql")).build(), HttpResponse.BodyHandlers.ofString());
+        assertEquals(200, response.statusCode());
+        assertTrue(response.body().contains("\"acknowledge\":true"), response.body());
     }
 
     public static void main(String[] args) throws Exception

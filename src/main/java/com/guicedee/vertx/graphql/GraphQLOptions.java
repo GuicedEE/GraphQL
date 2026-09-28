@@ -10,6 +10,7 @@ import lombok.Data;
  * <p>All settings can be overridden via system properties or environment variables.</p>
  *
  * <table>
+ *     <caption>GraphQL environment settings</caption>
  *     <tr><th>Variable</th><th>Default</th><th>Purpose</th></tr>
  *     <tr><td>GRAPHQL_HTTP_PATH</td><td>/graphql</td><td>HTTP endpoint path</td></tr>
  *     <tr><td>GRAPHQL_WS_ENABLED</td><td>true</td><td>Enable GraphQL over WebSocket</td></tr>

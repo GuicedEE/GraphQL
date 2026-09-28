@@ -36,6 +36,7 @@ import java.util.logging.Logger;
  *
  * <h2>Environment Variables</h2>
  * <table>
+ *     <caption>GraphQL gateway environment settings</caption>
  *     <tr><th>Variable</th><th>Default</th><th>Purpose</th></tr>
  *     <tr><td>GRAPHQL_GATEWAY_ENABLED</td><td>false</td><td>Enable remote schema stitching</td></tr>
  *     <tr><td>GRAPHQL_GATEWAY_ENVIRONMENT</td><td>(empty)</td><td>Only merge services allowed in this environment</td></tr>

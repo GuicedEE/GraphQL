@@ -18,6 +18,9 @@ public class TestSchemaProvider implements IGraphQLSchemaProvider<TestSchemaProv
                     hello: String
                     greet(name: String!): String
                 }
+                extend type Mutation {
+                    acknowledge: Boolean!
+                }
                 """);
     }
 
@@ -27,7 +30,7 @@ public class TestSchemaProvider implements IGraphQLSchemaProvider<TestSchemaProv
         return builder.type("Query", b -> b
                 .dataFetcher("hello", env -> "Hello, GraphQL!")
                 .dataFetcher("greet", env -> "Hello, " + env.getArgument("name") + "!")
-        );
+        ).type("Mutation", b -> b.dataFetcher("acknowledge", env -> true));
     }
 }
 

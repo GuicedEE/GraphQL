@@ -8,6 +8,7 @@ import com.guicedee.client.services.lifecycle.IGuiceModule;
 import com.guicedee.vertx.graphql.GraphQLOptions;
 import com.guicedee.vertx.graphql.services.IGraphQLSchemaProvider;
 import graphql.GraphQL;
+import graphql.language.ObjectTypeDefinition;
 import graphql.execution.instrumentation.ChainedInstrumentation;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -66,6 +67,18 @@ public class GraphQLModule extends AbstractModule implements IGuiceModule<GraphQ
             catch (Throwable t)
             {
                 log.log(Level.SEVERE, "Error loading GraphQL schema provider: " + provider.getClass().getName(), t);
+            }
+        }
+
+        // A feature module may be the first contributor to an operation (e.g.
+        // `extend type Mutation`). Supply only missing conventional operation
+        // roots, leaving existing provider-owned root definitions untouched.
+        for (String root : java.util.List.of("Query", "Mutation", "Subscription"))
+        {
+            if (mergedRegistry.getType(root).isEmpty()
+                    && mergedRegistry.objectTypeExtensions().containsKey(root))
+            {
+                mergedRegistry.add(ObjectTypeDefinition.newObjectTypeDefinition().name(root).build());
             }
         }
 
