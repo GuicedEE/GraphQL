@@ -26,7 +26,7 @@ Built on [Vert.x 5](https://vertx.io/) · [GraphQL-Java](https://www.graphql-jav
 <summary>Gradle (Kotlin DSL)</summary>
 
 ```kotlin
-implementation("com.guicedee:graphql:2.4.0")
+implementation("com.guicedee:graphql:2.4.1")
 ```
 </details>
 
